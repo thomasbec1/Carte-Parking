@@ -56,7 +56,7 @@
 
         // Ajout des lignes vertes pour chaque rue sélectionnée
         streets.forEach(street => {
-            L.polyline(street.coordinates, {color: "green", weight: 4}).addTo(map)
+            L.polyline(street.coordinates, {color: "green", weight: 3}).addTo(map)
             .bindPopup(street.name);  // Affiche le nom de la rue au clic
         });
 
