@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte de Neuilly-sur-Seine</title>
+    
+    <!-- Intégration de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; }
+        #map { width: 100%; height: 100vh; }
+    </style>
+</head>
+<body>
+
+    <!-- Conteneur de la carte -->
+    <div id="map"></div>
+
+    <!-- Script Leaflet -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialisation de la carte centrée sur Neuilly-sur-Seine
+        var map = L.map('map').setView([48.8846, 2.2687], 15);
+
+        // Ajout d'un fond de carte OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        // Liste des rues spécifiques à surligner (ajoute les noms et coordonnées ici)
+        var streets = [
+            {
+                name: "Avenue Charles de Gaulle",
+                coordinates: [
+                    [48.8855, 2.2650],  // Point 1
+                    [48.8841, 2.2695],  // Point 2
+                    [48.8827, 2.2732]   // Point 3
+                ]
+            },
+            {
+                name: "Rue Jacques Dulud",
+                coordinates: [
+                    [48.8813562, 2.2623682],
+                    [48.8806268, 2.2684075]
+                ]
+            }
+        ];
+
+        // Ajout des lignes vertes pour chaque rue sélectionnée
+        streets.forEach(street => {
+            L.polyline(street.coordinates, {color: "green", weight: 4}).addTo(map)
+            .bindPopup(street.name);  // Affiche le nom de la rue au clic
+        });
+
+    </script>
+
+</body>
+</html>
